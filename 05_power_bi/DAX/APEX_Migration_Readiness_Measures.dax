@@ -1,0 +1,104 @@
+-- Create this calculated table first and hide the Placeholder column.
+Measures =
+DATATABLE (
+    "Placeholder", STRING,
+    { { "Measures" } }
+)
+
+Total Employees =
+DISTINCTCOUNT ( FactPeopleMigration[Employee_ID] )
+
+Migration Ready Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsMigrationReady] = TRUE () )
+)
+
+Remediation Required Records =
+[Total Employees] - [Migration Ready Records]
+
+Migration Readiness % =
+DIVIDE ( [Migration Ready Records], [Total Employees], 0 )
+
+Duplicate Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsDuplicate] = TRUE () )
+)
+
+Missing Email Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsMissingEmail] = TRUE () )
+)
+
+Invalid Source of Truth Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsSourceOfTruthInvalid] = TRUE () )
+)
+
+Pending Validation Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsValidationPending] = TRUE () )
+)
+
+Unclean Data Records =
+CALCULATE (
+    [Total Employees],
+    KEEPFILTERS ( FactPeopleMigration[IsDataQualityUnclean] = TRUE () )
+)
+
+Clean Data Records =
+[Total Employees] - [Unclean Data Records]
+
+Clean Data % =
+DIVIDE ( [Clean Data Records], [Total Employees], 0 )
+
+Confirmed Source of Truth Records =
+[Total Employees] - [Invalid Source of Truth Records]
+
+Source of Truth Confirmation % =
+DIVIDE ( [Confirmed Source of Truth Records], [Total Employees], 0 )
+
+Validated Records =
+[Total Employees] - [Pending Validation Records]
+
+Validation Completion % =
+DIVIDE ( [Validated Records], [Total Employees], 0 )
+
+Issue Instances =
+COUNTROWS ( FactDQIssue )
+
+Employees With Issues =
+DISTINCTCOUNT ( FactDQIssue[Employee_ID] )
+
+Issues per Affected Employee =
+DIVIDE ( [Issue Instances], [Employees With Issues], 0 )
+
+Readiness Target % =
+1
+
+Readiness Gap % =
+[Migration Readiness %] - [Readiness Target %]
+
+Records to Remediate =
+[Remediation Required Records]
+
+Readiness RAG =
+SWITCH (
+    TRUE (),
+    [Migration Readiness %] >= 0.98, "Green",
+    [Migration Readiness %] >= 0.95, "Amber",
+    "Red"
+)
+
+Readiness Colour =
+SWITCH (
+    [Readiness RAG],
+    "Green", "#2E7D32",
+    "Amber", "#F9A825",
+    "Red", "#C62828",
+    "#616161"
+)

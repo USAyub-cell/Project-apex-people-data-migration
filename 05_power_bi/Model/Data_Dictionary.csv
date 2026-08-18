@@ -1,0 +1,14 @@
+﻿Table,Field,Type,Role,Definition
+FactPeopleMigration,Employee_ID,Whole number,Business key,Unique employee identifier.
+FactPeopleMigration,Email,Text,Attribute,Employee email; null indicates missing.
+FactPeopleMigration,IsDuplicate,Boolean,DQ flag,True when Duplicate_Flag equals Yes.
+FactPeopleMigration,IsMissingEmail,Boolean,DQ flag,True when email is null or Missing_Email equals Yes.
+FactPeopleMigration,IsSourceOfTruthInvalid,Boolean,DQ flag,True when Source_of_Truth is not Confirmed.
+FactPeopleMigration,IsValidationPending,Boolean,DQ flag,True when Validation_Status is not Validated.
+FactPeopleMigration,IsDataQualityUnclean,Boolean,DQ flag,True when Data_Quality_Status is not Clean.
+FactPeopleMigration,IssueCount,Whole number,Derived metric,Number of failed employee-level controls.
+FactPeopleMigration,IsMigrationReady,Boolean,Outcome,True only when all migration-readiness rules pass.
+FactPeopleMigration,ReadinessStatus,Text,Outcome,Migration Ready or Remediation Required.
+FactDQIssue,DQRuleKey,Text,Foreign key,Links an issue instance to DimDQRule.
+FactDQIssue,IssueType,Text,Issue attribute,Human-readable issue category.
+DimDQRule,DQRuleKey,Text,Primary key,Controlled data-quality rule identifier.

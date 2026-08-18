@@ -1,0 +1,6 @@
+﻿FromTable,FromColumn,ToTable,ToColumn,Cardinality,CrossFilter,Active
+DimCountry,Country,FactPeopleMigration,Country,One-to-many,Single,Yes
+DimDepartment,Department,FactPeopleMigration,Department,One-to-many,Single,Yes
+DimSourceSystem,Source_System,FactPeopleMigration,Source_System,One-to-many,Single,Yes
+FactPeopleMigration,Employee_ID,FactDQIssue,Employee_ID,One-to-many,Single,Yes
+DimDQRule,DQRuleKey,FactDQIssue,DQRuleKey,One-to-many,Single,Yes

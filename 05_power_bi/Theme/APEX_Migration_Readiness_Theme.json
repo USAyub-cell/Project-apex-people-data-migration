@@ -1,0 +1,58 @@
+{
+  "name": "AYUB ANALYTICS Project APEX Migration Readiness",
+  "dataColors": [
+    "#0F4C5C",
+    "#2E7D32",
+    "#F9A825",
+    "#C62828",
+    "#3B82F6",
+    "#7C3AED",
+    "#64748B"
+  ],
+  "background": "#F7F9FC",
+  "foreground": "#1F2937",
+  "tableAccent": "#0F4C5C",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI",
+            "fontSize": 12,
+            "color": {
+              "solid": {
+                "color": "#1F2937"
+              }
+            }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F9FC"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}
