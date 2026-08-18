@@ -112,4 +112,3 @@ The detailed delivery plan is in:
 This repository demonstrates applied senior-level analytics capability across problem definition, data quality, SQL, Excel, semantic modelling, Power BI, KPI design, governance, QA and executive communication.
 
 **Project APEX is a professional capstone consulting simulation using synthetic data and is not presented as paid client experience.**
-
