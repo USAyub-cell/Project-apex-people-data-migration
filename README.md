@@ -98,7 +98,6 @@ A record is considered migration-ready only when:
 06_governance/
 07_qa/
 08_case_study/
-09_interview_evidence/
 ```
 
 ## 30-day pilot
