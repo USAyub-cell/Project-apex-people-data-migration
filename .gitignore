@@ -1,6 +1,0 @@
-# Power BI local/temp files
-*.pbix.autosave
-*.tmp
-~$*
-.DS_Store
-Thumbs.db
